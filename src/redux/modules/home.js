@@ -1,4 +1,56 @@
-const reducer = (state = {}, action) =>{
+import { get } from '../../utils/request'
+import url from '../../utils/url'
+
+
+export const types = {
+  // 获取猜你喜欢请求
+  FETCH_LIKES_REQUEST: 'HOME/FETCH_LIKES_REQUEST',
+  // 获取猜你喜欢请求成功
+  FETCH_LIKES_SUCCESS: 'HOME/FETCH_LIKES_SUCCESS',
+  // 获取猜你喜欢请求失败
+  FETCH_LIKES_FAILURE: 'HOME/FETCH_LIKES_FAILURE',
+}
+
+export const actions = {
+  loadLikes: () => {
+    return (dispatch, getState) => {
+      dispatch(fetchLikesRequest())
+      return get(url.getProductList(0, 10)).then(
+        data => {
+          dispatch(fetchLikesSuccess(data))
+        },
+        err =>{
+          dispatch(fetchLikesFailure(err))
+        }
+      )
+    }
+  }
+}
+
+const fetchLikesRequest = () => ({
+  type: types.FETCH_LIKES_REQUEST
+})
+
+const fetchLikesSuccess = (data) => ({
+  type: types.FETCH_LIKES_SUCCESS,
+  data
+})
+
+const fetchLikesFailure = (err) => ({
+  type: types.FETCH_LIKES_FAILURE,
+  err
+})
+
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    case types.FETCH_LIKES_REQUEST:
+      //todo
+    case types.FETCH_LIKES_SUCCESS:
+    //todo
+    case types.FETCH_LIKES_FAILURE:
+    //todo
+    default:
+  }
   return state
 }
 
