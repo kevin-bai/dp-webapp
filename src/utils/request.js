@@ -34,7 +34,7 @@ function handleResponse(url, res) {
     return res.json()
   } else {
     console.error(`request failed. Url = ${url}`)
-    return Promise.reject({err: {message: `failed request due to server error`}})
+    return Promise.reject({error: {message: `failed request due to server error`}})
   }
 }
 

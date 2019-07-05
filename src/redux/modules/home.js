@@ -1,5 +1,6 @@
 import { get } from '../../utils/request'
 import url from '../../utils/url'
+import { FETCH_DATA } from '../middleware/api'
 
 
 export const types = {
@@ -14,18 +15,34 @@ export const types = {
 export const actions = {
   loadLikes: () => {
     return (dispatch, getState) => {
-      dispatch(fetchLikesRequest())
-      return get(url.getProductList(0, 10)).then(
-        data => {
-          dispatch(fetchLikesSuccess(data))
-        },
-        err =>{
-          dispatch(fetchLikesFailure(err))
-        }
-      )
+      const targetUrl = url.getProductList(0, 10)
+      return dispatch(fetchLikes(targetUrl))
+      // dispatch(fetchLikesRequest())
+      // return get(url.getProductList(0, 10)).then(
+      //   data => {
+      //     dispatch(fetchLikesSuccess(data))
+      //   },
+      //   err => {
+      //     dispatch(fetchLikesFailure(err))
+      //   }
+      // )
     }
   }
 }
+
+
+const fetchLikes = url => ({
+  [FETCH_DATA]: {
+    types:[
+      types.FETCH_LIKES_REQUEST,
+      types.FETCH_LIKES_SUCCESS,
+      types.FETCH_LIKES_FAILURE,
+    ],
+    url,
+
+  }
+})
+
 
 const fetchLikesRequest = () => ({
   type: types.FETCH_LIKES_REQUEST
@@ -44,7 +61,7 @@ const fetchLikesFailure = (err) => ({
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_LIKES_REQUEST:
-      //todo
+    //todo
     case types.FETCH_LIKES_SUCCESS:
     //todo
     case types.FETCH_LIKES_FAILURE:
