@@ -1,6 +1,5 @@
-import { get } from '../../utils/request'
 import url from '../../utils/url'
-import { FETCH_DATA } from '../middleware/api'
+import { FETCH_DATA } from '../middlewares/api'
 
 
 export const types = {
