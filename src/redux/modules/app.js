@@ -13,6 +13,7 @@ export const actions = {
   })
 }
 
+
 const reducer = (state = initialState, action) => {
   const {error, type} = action
   if (type === types.CLEAR_ERROR) {
