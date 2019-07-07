@@ -21,6 +21,10 @@ class Home extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.props.homeActions.loadDiscounts()
+  }
 }
 
 const mapStateToProps = (state, props) => {

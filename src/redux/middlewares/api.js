@@ -3,6 +3,8 @@ import { get } from '../../utils/request'
 export const FETCH_DATA = 'FETCH_DATA'
 
 export default store => next => action => {
+  console.log('enter api middleware');
+
   const callApi = action[FETCH_DATA]
 
   if (typeof callApi === 'undefined') {

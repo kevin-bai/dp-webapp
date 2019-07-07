@@ -1,6 +1,19 @@
 import url from '../../utils/url'
 import { FETCH_DATA } from '../middlewares/api'
+import {schema} from './entities/products'
+import { combineReducers } from "redux";
 
+const initialState = {
+  likes: {
+    isFetching: false,
+    pageCount: 0,
+    ids: []
+  },
+  discounts: {
+    isFetching: false,
+    ids: []
+  }
+};
 
 export const types = {
   // 获取猜你喜欢请求
@@ -9,6 +22,9 @@ export const types = {
   FETCH_LIKES_SUCCESS: 'HOME/FETCH_LIKES_SUCCESS',
   // 获取猜你喜欢请求失败
   FETCH_LIKES_FAILURE: 'HOME/FETCH_LIKES_FAILURE',
+  FETCH_DISCOUNTS_REQUEST: 'HOME/FETCH_DISCOUNTS_REQUEST',
+  FETCH_DISCOUNTS_SUCCESS: 'HOME/FETCH_DISCOUNTS_SUCCESS',
+  FETCH_DISCOUNTS_FAILURE: 'HOME/FETCH_DISCOUNTS_FAILURE',
 }
 
 export const actions = {
@@ -27,13 +43,26 @@ export const actions = {
       // )
     }
   },
-  getDiscounts: ()=>{
-    return (dispatch, getState)
+  loadDiscounts: ()=>{
+    return (dispatch, getState) =>{
+      let url ='/mock/products/discounts.json'
+      return dispatch(fetchDiscounts(url))
+    }
   }
 }
 
 
-
+const fetchDiscounts = url =>({
+  [FETCH_DATA]: {
+    types:[
+      types.FETCH_DISCOUNTS_REQUEST,
+      types.FETCH_DISCOUNTS_SUCCESS,
+      types.FETCH_DISCOUNTS_FAILURE,
+    ],
+    url,
+    schema
+  }
+})
 
 const fetchLikes = url => ({
   [FETCH_DATA]: {
@@ -43,26 +72,26 @@ const fetchLikes = url => ({
       types.FETCH_LIKES_FAILURE,
     ],
     url,
-
+    schema
   }
 })
 
 
-const fetchLikesRequest = () => ({
-  type: types.FETCH_LIKES_REQUEST
-})
+// const fetchLikesRequest = () => ({
+//   type: types.FETCH_LIKES_REQUEST
+// })
+//
+// const fetchLikesSuccess = (data) => ({
+//   type: types.FETCH_LIKES_SUCCESS,
+//   data
+// })
+//
+// const fetchLikesFailure = (err) => ({
+//   type: types.FETCH_LIKES_FAILURE,
+//   err
+// })
 
-const fetchLikesSuccess = (data) => ({
-  type: types.FETCH_LIKES_SUCCESS,
-  data
-})
-
-const fetchLikesFailure = (err) => ({
-  type: types.FETCH_LIKES_FAILURE,
-  err
-})
-
-const reducer = (state = {}, action) => {
+const likes = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_LIKES_REQUEST:
     //todo
@@ -75,4 +104,33 @@ const reducer = (state = {}, action) => {
   return state
 }
 
+const discounts = (state = initialState.discounts, action) =>{
+  switch (action.type) {
+    case types.FETCH_DISCOUNTS_REQUEST:
+      return { ...state, isFetching: true };
+    case types.FETCH_DISCOUNTS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        ids: state.ids.concat(action.response.ids)
+      };
+    case types.FETCH_DISCOUNTS_FAILURE:
+      return {...state, isFetching: false}
+    default:
+      return state;
+  }
+}
+
+const reducer = combineReducers({
+  discounts,
+  likes
+})
+
 export default reducer;
+
+//selector
+export const getDiscounts = (state) =>{
+  return state.home.discounts.ids.map(id =>{
+    return state.entities.products[id]
+  })
+}
