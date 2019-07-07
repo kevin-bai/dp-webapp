@@ -26,8 +26,13 @@ export const actions = {
       //   }
       // )
     }
+  },
+  getDiscounts: ()=>{
+    return (dispatch, getState)
   }
 }
+
+
 
 
 const fetchLikes = url => ({
