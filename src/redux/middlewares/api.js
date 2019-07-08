@@ -3,12 +3,14 @@ import { get } from '../../utils/request'
 export const FETCH_DATA = 'FETCH_DATA'
 
 export default store => next => action => {
-  console.log('enter api middleware');
+  // console.log('enter api middleware');
 
   const callApi = action[FETCH_DATA]
 
+  // console.log('action',action)
+
   if (typeof callApi === 'undefined') {
-    next(action)
+    return next(action)
   }
 
   const {types, url, schema} = callApi;

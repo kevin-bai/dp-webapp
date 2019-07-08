@@ -15,6 +15,7 @@ export const actions = {
 
 
 const reducer = (state = initialState, action) => {
+  // console.log('app reducer', action)
   const {error, type} = action
   if (type === types.CLEAR_ERROR) {
     return {...state, error: null}
