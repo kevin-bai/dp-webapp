@@ -13,6 +13,7 @@ import {
 class Home extends Component {
   render() {
     const {discounts} = this.props
+    console.log('home props',this.props)
     return (
       <div>
         <Category></Category>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from "redux";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { connect } from "react-redux";
 import Home from '../home'
 import ErrorToast from '../../components/ErrorToast'
@@ -11,7 +12,13 @@ class App extends Component {
     const {error, appActions: {clearError}} = this.props
     return (
       <div className="App">
-        <Home></Home>
+        <Router>
+          <Switch>
+            {/*<Route path="/detail/:id" component={ProductDetail} />*/}
+            {/*<Route path="/search" component={Search} />*/}
+            <Route path="/" component={Home} />
+          </Switch>
+        </Router>
         {error ? <ErrorToast msg={error} clearError={clearError}></ErrorToast> : null}
       </div>
     );

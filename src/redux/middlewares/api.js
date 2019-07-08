@@ -60,12 +60,12 @@ export default store => next => action => {
   //   })
   // )
 
-  return fetchData(url,schema).then(
+  fetchData(url,schema).then(
     res => {
       console.log('res', res)
       next(actionWith({
         type: successType,
-        data: res
+        response: res
       }))
     },
     error => next(actionWith({
@@ -77,6 +77,7 @@ export default store => next => action => {
 
 const fetchData = (url,schema) => {
   return get(url).then(res => {
+    console.log('fetch data :',res)
     return normalizeData(res,schema)
   })
 }

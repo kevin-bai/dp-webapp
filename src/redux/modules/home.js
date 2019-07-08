@@ -45,6 +45,10 @@ export const actions = {
   },
   loadDiscounts: ()=>{
     return (dispatch, getState) =>{
+      const {ids} = getState().home.discounts
+      if(ids.length > 0) {
+        return null;
+      }
       let url ='/mock/products/discounts.json'
       return dispatch(fetchDiscounts(url))
     }
@@ -105,6 +109,8 @@ const likes = (state = {}, action) => {
 }
 
 const discounts = (state = initialState.discounts, action) =>{
+  console.log('discount reducer', action)
+  console.log('state', state)
   switch (action.type) {
     case types.FETCH_DISCOUNTS_REQUEST:
       return { ...state, isFetching: true };
@@ -130,6 +136,7 @@ export default reducer;
 
 //selector
 export const getDiscounts = (state) =>{
+  console.log('getDiscounts',state)
   return state.home.discounts.ids.map(id =>{
     return state.entities.products[id]
   })
