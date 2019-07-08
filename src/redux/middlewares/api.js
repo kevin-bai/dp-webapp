@@ -62,7 +62,6 @@ export default store => next => action => {
 
   fetchData(url,schema).then(
     res => {
-      console.log('res', res)
       next(actionWith({
         type: successType,
         response: res
@@ -77,14 +76,13 @@ export default store => next => action => {
 
 const fetchData = (url,schema) => {
   return get(url).then(res => {
-    console.log('fetch data :',res)
     return normalizeData(res,schema)
   })
 }
 
 
 const normalizeData = (data,schema) => {
-  console.log('normalizeData')
+  // console.log('normalizeData')
   const {id, name} = schema;
 
   if (!id) {

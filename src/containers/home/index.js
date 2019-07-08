@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import Category from './components/Category'
 import Headline from './components/HeadLine'
 import Discount from "./components/Discount";
+import HomeHeader from  './components/HomeHeader'
 import {
   actions as homeActions,
   getDiscounts
@@ -16,6 +17,7 @@ class Home extends Component {
     console.log('home props',this.props)
     return (
       <div>
+        <HomeHeader></HomeHeader>
         <Category></Category>
         <Headline></Headline>
         <Discount data={discounts}></Discount>
