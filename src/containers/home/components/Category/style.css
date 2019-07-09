@@ -35,5 +35,5 @@
   color: #f5734b;
 }
 .slick-next{
-  display: none;
+  display: none!important;
 }

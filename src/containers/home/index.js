@@ -5,7 +5,8 @@ import Category from './components/Category'
 import Headline from './components/HeadLine'
 import Discount from "./components/Discount";
 import HomeHeader from  './components/HomeHeader';
-import Activity from './components/Activity'
+import Activity from './components/Activity';
+import LikeList from './components/LikeList'
 import {
   actions as homeActions,
   getDiscounts
@@ -23,6 +24,7 @@ class Home extends Component {
         <Headline></Headline>
         <Activity></Activity>
         <Discount data={discounts}></Discount>
+        <LikeList></LikeList>
       </div>
     );
   }
