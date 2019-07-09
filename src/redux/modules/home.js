@@ -27,6 +27,7 @@ export const types = {
   FETCH_DISCOUNTS_FAILURE: 'HOME/FETCH_DISCOUNTS_FAILURE',
 }
 
+// action creator ?
 export const actions = {
   loadLikes: () => {
     return (dispatch, getState) => {
@@ -95,6 +96,8 @@ const fetchLikes = url => ({
 //   err
 // })
 
+
+// likes reducer
 const likes = (state = {}, action) => {
   switch (action.type) {
     case types.FETCH_LIKES_REQUEST:
@@ -108,6 +111,7 @@ const likes = (state = {}, action) => {
   return state
 }
 
+// discounts reducer
 const discounts = (state = initialState.discounts, action) =>{
   // console.log('discount reducer', action)
   // console.log('state', state)

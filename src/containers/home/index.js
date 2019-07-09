@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux'
 import Category from './components/Category'
 import Headline from './components/HeadLine'
 import Discount from "./components/Discount";
-import HomeHeader from  './components/HomeHeader'
+import HomeHeader from  './components/HomeHeader';
+import Activity from './components/Activity'
 import {
   actions as homeActions,
   getDiscounts
@@ -14,12 +15,13 @@ import {
 class Home extends Component {
   render() {
     const {discounts} = this.props
-    console.log('home props',this.props)
+    // console.log('home props',this.props)
     return (
       <div>
         <HomeHeader></HomeHeader>
         <Category></Category>
         <Headline></Headline>
+        <Activity></Activity>
         <Discount data={discounts}></Discount>
       </div>
     );
