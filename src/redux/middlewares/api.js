@@ -62,10 +62,14 @@ export default store => next => action => {
 
   fetchData(url,schema).then(
     res => {
-      next(actionWith({
-        type: successType,
-        response: res
-      }))
+      setTimeout(()=>{
+
+        next(actionWith({
+          type: successType,
+          response: res
+        }))
+      },1000)
+
     },
     error => next(actionWith({
       type: failureType,

@@ -28,6 +28,9 @@ function post(url, data) {
   })
 }
 
+// todo
+// delete update put
+
 
 function handleResponse(url, res) {
   if (res.status === 200) {

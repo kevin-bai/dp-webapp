@@ -9,13 +9,16 @@ import Activity from './components/Activity';
 import LikeList from './components/LikeList'
 import {
   actions as homeActions,
-  getDiscounts
+  getDiscounts,
+  getLikes,
+  getLikesPageCount,
+  getLikesFetchingFlag
 } from '../../redux/modules/home'
 
 
 class Home extends Component {
   render() {
-    const {discounts} = this.props
+    const {discounts, likes, likesPageCount,likesLoading} = this.props
     // console.log('home props',this.props)
     return (
       <div>
@@ -24,19 +27,33 @@ class Home extends Component {
         <Headline></Headline>
         <Activity></Activity>
         <Discount data={discounts}></Discount>
-        <LikeList></LikeList>
+        <LikeList data={likes} pageCount={likesPageCount} fetchData={this.loadLikes} loading={likesLoading}></LikeList>
       </div>
     );
   }
 
   componentDidMount() {
-    this.props.homeActions.loadDiscounts()
+    this.props.homeActions.loadDiscounts();
   }
+
+
+  // 为什么不能这样？
+  // loadLikes(){
+  //   this.props.homeActions.loadLikes();
+  // }
+
+  loadLikes = ()=>{
+    this.props.homeActions.loadLikes();
+  }
+
 }
 
 const mapStateToProps = (state, props) => {
   return {
-    discounts: getDiscounts(state)
+    discounts: getDiscounts(state),
+    likes: getLikes(state),
+    likesPageCount:getLikesPageCount(state),
+    likesLoading: getLikesFetchingFlag(state)
   }
 }
 
