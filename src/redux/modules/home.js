@@ -27,7 +27,7 @@ export const types = {
   FETCH_DISCOUNTS_FAILURE: 'HOME/FETCH_DISCOUNTS_FAILURE',
 }
 
-// action creator ?
+// action creator
 export const actions = {
   loadLikes: () => {
     return (dispatch, getState) => {
@@ -38,10 +38,12 @@ export const actions = {
   },
   loadDiscounts: () => {
     return (dispatch, getState) => {
+      // 利用redux做缓存，判断discounts中已经有ids的时候，就不去做请求dispatch
       const {ids} = getState().home.discounts
       if (ids.length > 0) {
         return null;
       }
+
       let url = '/mock/products/discounts.json'
       return dispatch(fetchDiscounts(url))
     }

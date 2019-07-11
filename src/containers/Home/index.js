@@ -59,6 +59,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    // bindActionCreators 可以不用再传dispatch给子组件，而直接使用homeActions下面的方法进行dispatch操作
     homeActions: bindActionCreators(homeActions, dispatch)
   }
 }
