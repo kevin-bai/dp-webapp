@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import './style.css'
 
 export default class index extends Component {
-    render() {
-        return (
-<div className="activity">
+  render() {
+    return (
+      <div className="activity">
         <div className="activity__block">
           <a
             className="activity__content activity__content--pink"
@@ -38,6 +38,6 @@ export default class index extends Component {
           </a>
         </div>
       </div>
-        )
-    }
+    )
+  }
 }

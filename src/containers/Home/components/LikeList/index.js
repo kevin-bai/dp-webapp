@@ -34,7 +34,7 @@ class LikeList extends Component {
     console.log('document', document)
 
     if (this.props.pageCount < 3) {
-      document.addEventListener('scroll', this.hadleScroll)
+      document.addEventListener('scroll', this.handleScroll)
     }
     this.props.fetchData()
   }
@@ -44,15 +44,16 @@ class LikeList extends Component {
     // console.log('prevProps', prevProps)
     console.log('this.props --componentDidUpdate', this.props)
     if (this.props.pageCount > 3) {
-      document.removeEventListener('scroll', this.hadleScroll)
+      document.removeEventListener('scroll', this.handleScroll)
     }
   }
 
-  componentWillMount() {
-    document.removeEventListener('scroll', this.hadleScroll)
+  componentWillUnmount() {
+    console.log('componentWillMount')
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
-  hadleScroll = () => {
+  handleScroll = () => {
     // console.log('handel scroll')
     const scrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
