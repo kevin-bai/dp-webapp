@@ -30,8 +30,8 @@ class LikeList extends Component {
 
   componentDidMount() {
     // console.log('this.props --componentDidMount', this.props)
-    console.log('my ref', this.myRef.current);
-    console.log('document', document)
+    // console.log('my ref', this.myRef.current);
+    // console.log('document', document)
 
     if (this.props.pageCount < 3) {
       document.addEventListener('scroll', this.handleScroll)

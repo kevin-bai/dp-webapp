@@ -16,6 +16,7 @@ import {
 class ProductDetail extends Component {
   render() {
     const {product} = this.props
+    console.log('detail data', product)
     return (
       <div>
         <Header title="团购详情" onBack={this.handleBack} grey></Header>
@@ -34,7 +35,7 @@ class ProductDetail extends Component {
 
   componentDidMount() {
     const productId = this.props.match.params.id;
-    console.log('router params', this.props.match)
+    // console.log('router params', this.props.match)
     this.props.detailActions.loadProductDetail(productId)
     // 页面跳转后重新回到页面顶部
     document.getElementById('root').scrollIntoView(true)

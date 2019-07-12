@@ -65,8 +65,7 @@ export default reducer;
 
 // selectors
 export const getProduct = (state, id) => {
-  if(state.detail.productDetail.id){
-    return state.entities.product[id]
+  if(state.entities.products){
+    return state.entities.products[id]
   }
-
 }
