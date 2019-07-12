@@ -134,10 +134,10 @@ export const getLikes = (state) => {
   })
 }
 
-export const getLikesPageCount = (state)=>{
+export const getLikesPageCount = (state) => {
   return state.home.likes.pageCount
 }
 
-export const getLikesFetchingFlag = (state) =>{
+export const getLikesFetchingFlag = (state) => {
   return state.home.likes.isFetching
 }

@@ -3,6 +3,8 @@ import './style.css'
 
 class Detail extends Component {
   render() {
+    const {data} = this.props
+    console.log('detail data', data)
     return (
       <div className="detail">
         <div className="detail__header">
@@ -54,6 +56,10 @@ class Detail extends Component {
         </div>
       </div>
     );
+  }
+
+  componentDidMount() {
+
   }
 }
 
