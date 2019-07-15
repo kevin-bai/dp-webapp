@@ -39,17 +39,24 @@ class LikeList extends Component {
     this.props.fetchData()
   }
 
+  // shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //   console.log('shouldComponentUpdate------ nextProps:',nextProps)
+  //   console.log('shouldComponentUpdate------ prevProps:',this.props)
+  //   return true
+  // }
+
+
   // todo 为什么渲染多次，如何优化？
   componentDidUpdate(prevProps, prevState, snapshot) {
     // console.log('prevProps', prevProps)
-    console.log('this.props --componentDidUpdate', this.props)
+    // console.log(' this.props --componentDidUpdate', this.props)
     if (this.props.pageCount > 3) {
       document.removeEventListener('scroll', this.handleScroll)
     }
   }
 
   componentWillUnmount() {
-    console.log('componentWillMount')
+    // console.log('componentWillMount')
     document.removeEventListener('scroll', this.handleScroll)
   }
 
