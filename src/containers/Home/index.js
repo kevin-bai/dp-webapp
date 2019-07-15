@@ -6,7 +6,8 @@ import Headline from './components/HeadLine'
 import Discount from "./components/Discount";
 import HomeHeader from  './components/HomeHeader';
 import Activity from './components/Activity';
-import LikeList from './components/LikeList'
+import LikeList from './components/LikeList';
+import Footer from '../../components/Footer'
 import {
   actions as homeActions,
   getDiscounts,
@@ -28,6 +29,7 @@ class Home extends Component {
         <Activity></Activity>
         <Discount data={discounts}></Discount>
         <LikeList data={likes} pageCount={likesPageCount} fetchData={this.loadLikes} loading={likesLoading}></LikeList>
+        <Footer></Footer>
       </div>
     );
   }
