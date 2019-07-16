@@ -4,19 +4,26 @@ import './style.css'
 class PopularBox extends Component {
 
   render() {
-    const data = ['三里屯','朝阳大悦城','西单','海底捞','星巴克','局气','火锅','温泉','烤鸭']
+    const {data} = this.props
 
     return (
       <div className="popularSearch">
         {
-          data.map((item,index) => {
+          data.map((item, index) => {
             return (
-              <span key={index} className="popularSearch__item">{item}</span>
+              <span key={item.id}
+                    onClick={this.handleSearchItem.bind(this, item)}
+                    className="popularSearch__item"
+              >{item.keyword}</span>
             )
           })
         }
       </div>
     );
+  }
+
+  handleSearchItem = (item) => {
+    this.props.handleSearchItem(item)
   }
 }
 

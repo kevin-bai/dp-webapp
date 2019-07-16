@@ -4,5 +4,6 @@ export default {
   getProductDetail: (id) => {
     return `/mock/product_detail/${id}.json`
   },
-  getShopDetail: (id) => `/mock/shops/${id}.json`
+  getShopDetail: (id) => `/mock/shops/${id}.json`,
+  getKeywordsByType: type => `/mock/keywords/${type}.json`
 }

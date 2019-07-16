@@ -4,21 +4,24 @@ import './style.css'
 class SearchHistory extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: ["烤鸭", "火锅", "面条"]
-    }
   }
 
   render() {
+    const {data} = this.props
+
     return (
       <div className="searchHistory">
         <div className="searchHistory__header">搜索记录</div>
         <ul className="searchHistory__list">
           {
-            this.state.data.map((item, index) =>{
-              return <li key={index} onClick={this.handleClick}className="searchHistory__item">
-                {item}
-              </li>
+            data.map((item, index) => {
+              return (
+                <li key={item.id}
+                    onClick={this.handleSearchItem.bind(this, item)}
+                    className="searchHistory__item">
+                  {item.keyword}
+                </li>
+              )
             })
           }
         </ul>
@@ -27,14 +30,12 @@ class SearchHistory extends Component {
     );
   }
 
-  handleClick = () => {
-
+  handleSearchItem = (item) => {
+    this.props.handleSearchItem(item)
   }
 
   handleClear = () => {
-    this.setState({
-      data: []
-    })
+    this.props.handleClear()
   }
 }
 
