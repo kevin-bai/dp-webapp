@@ -108,6 +108,7 @@ const fetchRelatedKeywords = (url, text) => ({
 
 
 const popularKeywords = (state = initialState.popularKeywords, action) => {
+  // console.log('popularKeywords-----action',action)
   switch (action.type) {
     case types.FETCH_POPULAR_KEYWORDS_REQUEST:
       return {...state, isFetching: true}
@@ -126,6 +127,11 @@ const popularKeywords = (state = initialState.popularKeywords, action) => {
 
 
 const relatedKeywords = (state = initialState.relatedKeywords, action) => {
+
+  // console.log('relatedKeywords-----state',state)
+  // console.log('relatedKeywords-----action',action)
+  // console.log('relatedKeywords-----action2',state[action.text])
+
   switch (action.type) {
     case types.FETCH_RELATED_KEYWORDS_REQUEST:
     case types.FETCH_RELATED_KEYWORDS_SUCCESS:
@@ -192,7 +198,7 @@ export default reducer
 
 //selectors
 export const getPopularKeywords = (state) => {
-  console.log('getPopularKeywords---:',state)
+  // console.log('getPopularKeywords---:',state)
 
   return state.search.popularKeywords.ids.map(id => {
     return getKeywordById(state, id)
@@ -200,13 +206,15 @@ export const getPopularKeywords = (state) => {
 }
 
 export const getRelatedKeywords = (state) => {
+
+  // debugger
   const inputText = state.search.inputText
   if(!inputText || inputText.trim().length ===0){
     return null
   }
   const relatedKeyword = state.search.relatedKeywords[inputText]
 
-  if (relatedKeyword){
+  if (!relatedKeyword){
     return null
   }
   return relatedKeyword.ids.map(id =>{

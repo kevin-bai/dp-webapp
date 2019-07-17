@@ -15,7 +15,7 @@ import {
 class Search extends Component {
   render() {
     const {popularKeywords, historyKeywords, inputText,relatedKeywords} = this.props;
-    console.log('search component', this.props)
+    // console.log('search component', this.props)
 
     return (
       <div>
