@@ -33,7 +33,7 @@ const initialState = {
    * }
    */
   relatedKeywords: {},
-  historyKeywords: []
+  historyKeywords: [] // 保存关键词的id
 }
 
 
@@ -180,8 +180,7 @@ const historyKeywords = (state = initialState.historyKeywords, action) => {
   switch (action.type) {
     case types.ADD_HISTORY_KEYWORDS:
       const data = state.filter(item => action.text !== item)
-
-      return [...data, action.text]
+      return [action.text,...data]
     case types.CLEAR_HISTORY_KEYWORDS:
       return []
     default:

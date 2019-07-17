@@ -18,6 +18,7 @@ class SearchBox extends Component {
             type="text" className='searchBox__text'
             onChange={this.handleChange}
             value={inputText}
+            placeholder='请输入关键词'
           />
           <span className='searchBox__clear' onClick={this.handleClear}></span>
           <span className='searchBox__cancel' onClick={this.handleCancel}>取消</span>

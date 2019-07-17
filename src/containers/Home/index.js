@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux'
 import Category from './components/Category'
 import Headline from './components/HeadLine'
+import Banner from '../../components/Banner'
 import Discount from "./components/Discount";
 import HomeHeader from  './components/HomeHeader';
 import Activity from './components/Activity';
@@ -24,6 +25,7 @@ class Home extends Component {
     return (
       <div>
         <HomeHeader></HomeHeader>
+        <Banner></Banner>
         <Category></Category>
         <Headline></Headline>
         <Activity></Activity>
