@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import SearchBox from './components/SearchBox'
@@ -13,6 +14,11 @@ import {
 } from '../../redux/modules/search'
 
 class Search extends Component {
+  constructor(props){
+    super(props)
+    this.loadRelatedKeywordsDebounce = _.debounce(this.props.searchActions.loadRelatedKeywords, 1000)
+  }
+
   render() {
     const {popularKeywords, historyKeywords, inputText,relatedKeywords} = this.props;
     // console.log('search component', this.props)
@@ -43,15 +49,18 @@ class Search extends Component {
   componentDidMount() {
     this.props.searchActions.loadPopularKeywords();
     // this.props.searchActions.loadRelatedKeywords('');
+    this.props.searchActions.clearInputText();
   }
 
   goBack = () => {
     this.props.history.goBack();
   }
 
+
   changeInputText = (text) => {
     this.props.searchActions.setInputText(text);
-    this.props.searchActions.loadRelatedKeywords(text)
+    // this.props.searchActions.loadRelatedKeywords(text)
+    this.loadRelatedKeywordsDebounce(text)
   }
 
   clearInputText = () => {

@@ -54,6 +54,8 @@ export const actions = {
    * 根据keyword 加载相关关键词
    */
   loadRelatedKeywords: (keyword) => {
+    console.log('loadRelatedKeywords---keyword',keyword)
+
     return (dispatch, getState) => {
       const data = getState().search.relatedKeywords[keyword]
       if (data) {
