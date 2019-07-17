@@ -10,7 +10,7 @@ class LikeList extends Component {
   }
 
   render() {
-    const {data, pageCount,loading} = this.props
+    const {data,loading} = this.props
     return (
       <div ref={this.myRef} className="likeList">
         <div className="likeList__header">猜你喜欢</div>
@@ -22,7 +22,7 @@ class LikeList extends Component {
         {loading ? (
           <Loading />
         ) : (
-          <a onClick={this.loadMore} className="likeList__viewAll">查看更多</a>
+          <div onClick={this.loadMore} className="likeList__viewAll">查看更多</div>
         )}
       </div>
     );

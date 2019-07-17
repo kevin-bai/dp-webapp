@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './style.css'
 
 class SearchHistory extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {data} = this.props
 
