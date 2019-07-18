@@ -68,7 +68,7 @@ export default store => next => action => {
           type: successType,
           response: res
         }))
-      },1000)
+      },500)
 
     },
     error => next(actionWith({

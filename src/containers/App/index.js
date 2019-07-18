@@ -6,6 +6,8 @@ import Home from '../Home';
 import ProductDetail from '../ProductDetail';
 import Search from '../Search'
 import SearchResult from '../SearchResult'
+import User from '../User'
+import Login from '../Login'
 import ErrorToast from '../../components/ErrorToast';
 import { actions as appActions, getError } from "../../redux/modules/app";
 import './style.scss'
@@ -20,6 +22,8 @@ class App extends Component {
             <Route path="/detail/:id" component={ProductDetail} />
             <Route path="/search" component={Search} />
             <Route path="/search_result" component={SearchResult} />
+            <Route path="/user" component={User} />
+            <Route path="/login" component={Login} />
             <Route path="/" component={Home} />
           </Switch>
         </Router>
