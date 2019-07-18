@@ -13,3 +13,9 @@ const reducer = (state = {}, action) =>{
 }
 
 export default reducer;
+
+//selector
+
+export const getShopById = (state, id)=>{
+  return state.entities.shops[id]
+}

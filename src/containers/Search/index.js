@@ -74,7 +74,9 @@ class Search extends Component {
   searchItem = item =>{
     this.props.searchActions.setInputText(item.keyword);
     this.props.searchActions.addHistoryKeywords(item.id);
-    // todo 跳转逻辑
+    this.props.searchActions.loadRelatedShopByKeyword(item.keyword);
+
+    this.props.history.push('/search_result')
   }
 
 }
