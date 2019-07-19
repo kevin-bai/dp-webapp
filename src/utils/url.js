@@ -6,5 +6,6 @@ export default {
   },
   getShopDetail: (id) => `/mock/shops/${id}.json`,
   getKeywordsByType: type => `/mock/keywords/${type}.json`,
-  getRelatedShopBykeyword: keyword => `/mock/shops/related.json?keyword=${keyword}`
+  getRelatedShopBykeyword: keyword => `/mock/shops/related.json?keyword=${keyword}`,
+  login: (userName, password) =>`/mock/login`
 }
