@@ -66,7 +66,7 @@ export const actions = {
    * 根据keyword 加载相关关键词
    */
   loadRelatedKeywords: (keyword) => {
-    console.log('loadRelatedKeywords---keyword',keyword)
+    console.log('loadRelatedKeywords---keyword', keyword)
 
     return (dispatch, getState) => {
       const data = getState().search.relatedKeywords[keyword]
@@ -83,10 +83,10 @@ export const actions = {
    * @param {string} keyword
    * @returns {Function}
    */
-  loadRelatedShopByKeyword: keyword =>{
-    return (dispatch, getState) =>{
+  loadRelatedShopByKeyword: keyword => {
+    return (dispatch, getState) => {
       const data = getState().search.relatedShops[keyword]
-      if(data){
+      if (data) {
         return null
       }
 
@@ -136,7 +136,7 @@ const fetchRelatedKeywords = (url, text) => ({
   text
 })
 
-const fetchRelatedShopByKeyword = (url, keyword) =>({
+const fetchRelatedShopByKeyword = (url, keyword) => ({
   [FETCH_DATA]: {
     types: [
       types.FETCH_RELATED_SHOP_REQUEST,
@@ -199,7 +199,7 @@ const relatedKeywordsByText = (
   }
 }
 
-const relatedShops = (state = initialState.relatedShops, action)=>{
+const relatedShops = (state = initialState.relatedShops, action) => {
   switch (action.type) {
     case types.FETCH_RELATED_SHOP_REQUEST:
     case types.FETCH_RELATED_SHOP_SUCCESS:
@@ -213,7 +213,7 @@ const relatedShops = (state = initialState.relatedShops, action)=>{
   }
 }
 
-const relatedShopByKeyword = (  state = {isFetching: false, ids: []},action) =>{
+const relatedShopByKeyword = (state = {isFetching: false, ids: []}, action) => {
   switch (action.type) {
     case types.FETCH_RELATED_SHOP_REQUEST:
       return {...state, isFetching: true}
@@ -242,7 +242,7 @@ const historyKeywords = (state = initialState.historyKeywords, action) => {
   switch (action.type) {
     case types.ADD_HISTORY_KEYWORDS:
       const data = state.filter(item => action.text !== item)
-      return [action.text,...data]
+      return [action.text, ...data]
     case types.CLEAR_HISTORY_KEYWORDS:
       return []
     default:
@@ -273,15 +273,15 @@ export const getRelatedKeywords = (state) => {
 
   // debugger
   const inputText = state.search.inputText
-  if(!inputText || inputText.trim().length ===0){
+  if (!inputText || inputText.trim().length === 0) {
     return null
   }
   const relatedKeyword = state.search.relatedKeywords[inputText]
 
-  if (!relatedKeyword){
+  if (!relatedKeyword) {
     return null
   }
-  return relatedKeyword.ids.map(id =>{
+  return relatedKeyword.ids.map(id => {
     return getKeywordById(state, id)
   })
 }
@@ -291,28 +291,28 @@ export const getInputText = state => {
 }
 
 export const getHistoryKeywords = state => {
-  return state.search.historyKeywords.map( id =>{
+  return state.search.historyKeywords.map(id => {
     return getKeywordById(state, id)
   })
 }
 
-export const getCurrentKeyword = state =>{
-  if(state.search.historyKeywords && state.search.historyKeywords.length >0){
-    const id =state.search.historyKeywords[0]
+export const getCurrentKeyword = state => {
+  if (state.search.historyKeywords && state.search.historyKeywords.length > 0) {
+    const id = state.search.historyKeywords[0]
     return getKeywordById(state, id).keyword
-  }else {
+  } else {
     return ''
   }
 }
 
-export const getSearchedRelatedShop = state =>{
+export const getSearchedRelatedShop = state => {
   // console.log('getSearchedRelatedShop---state', state)
   // debugger
   const keyword = getCurrentKeyword(state)
-  if(!keyword){
+  if (!keyword) {
     return []
   }
-  return state.search.relatedShops[keyword].ids.map( id =>{
-    return getShopById(state,id)
+  return state.search.relatedShops[keyword].ids.map(id => {
+    return getShopById(state, id)
   })
 }
