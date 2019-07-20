@@ -1,21 +1,23 @@
 export const schema = {
-  name:'shops',
-  id:'id'
-}
+  name: "shops",
+  id: "id"
+};
 
-const reducer = (state = {}, action) =>{
-  if(action.response && action.response.shops){
-    console.log('entities -- shops--state',{...state, ...action.response.shops})
-    return {...state, ...action.response.shops}
+const reducer = (state = {}, action) => {
+  if (action.response && action.response.shops) {
+    console.log("entities -- shops--state", {
+      ...state,
+      ...action.response.shops
+    });
+    return { ...state, ...action.response.shops };
   }
-  return state
-
-}
+  return state;
+};
 
 export default reducer;
 
 //selector
 
-export const getShopById = (state, id)=>{
-  return state.entities.shops[id]
-}
+export const getShopById = (state, id) => {
+  return state.entities.shops[id];
+};

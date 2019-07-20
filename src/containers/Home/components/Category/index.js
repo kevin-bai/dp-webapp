@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick'
-import './style.css'
+import React, { Component } from "react";
+import Slider from "react-slick";
+import "./style.css";
 
 const dataSource = [
   [
@@ -134,7 +134,6 @@ const dataSource = [
 ];
 
 class Category extends Component {
-
   render() {
     const settings = {
       dots: true,
@@ -145,30 +144,28 @@ class Category extends Component {
     };
 
     return (
-      <div className='category'>
+      <div className="category">
         <Slider {...settings}>
           {dataSource.map((block, index) => {
             return (
               <div key={index}>
                 {block.map((item, i) => {
                   return (
-                    <div className='category__section' key={i}>
-                      <img className='category__icon' src={item.src} alt=""/>
+                    <div className="category__section" key={i}>
+                      <img className="category__icon" src={item.src} alt="" />
                       <div>
-                        <span className='category__text'>{item.name}</span>
+                        <span className="category__text">{item.name}</span>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
-            )
+            );
           })}
         </Slider>
       </div>
     );
   }
-
-
 }
 
 export default Category;

@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import './style.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
 
 class HomeHeader extends Component {
   render() {
     return (
-        <div className="homeHeader">
-          <header className="homeHeader__wrapper">
-            <Link to="/" className="homeHeader__city">北京</Link>
-            <Link to="/search" className="homeHeader__search">输入商户名、地点</Link>
-            <Link to="/user" className="homeHeader__self">
-              <div className="homeHeader__portrait"/>
-            </Link>
-          </header>
-        </div>
+      <div className="homeHeader">
+        <header className="homeHeader__wrapper">
+          <Link to="/" className="homeHeader__city">
+            北京
+          </Link>
+          <Link to="/search" className="homeHeader__search">
+            输入商户名、地点
+          </Link>
+          <Link to="/user" className="homeHeader__self">
+            <div className="homeHeader__portrait" />
+          </Link>
+        </header>
+      </div>
     );
   }
 }

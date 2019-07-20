@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import ShopItem from '../ShopItem'
-import './style.css'
+import React, { Component } from "react";
+import ShopItem from "../ShopItem";
+import "./style.css";
 
 class ShopList extends Component {
   render() {
-    const {data} = this.props
+    const { data } = this.props;
     return (
       <div className="shopList">
         <div className="shopList__filter">

@@ -1,26 +1,34 @@
-import React, { Component } from 'react';
-import _ from 'lodash'
+import React, { Component } from "react";
+import _ from "lodash";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import SearchBox from './components/SearchBox'
-import PopularSearch from './components/PopularSearch'
-import SearchHistory from './components/SearchHistory'
+import SearchBox from "./components/SearchBox";
+import PopularSearch from "./components/PopularSearch";
+import SearchHistory from "./components/SearchHistory";
 import {
   actions as searchActions,
   getPopularKeywords,
   getInputText,
   getHistoryKeywords,
   getRelatedKeywords
-} from '../../redux/modules/search'
+} from "../../redux/modules/search";
 
 class Search extends Component {
-  constructor(props){
-    super(props)
-    this.loadRelatedKeywordsDebounce = _.debounce(this.props.searchActions.loadRelatedKeywords, 1000)
+  constructor(props) {
+    super(props);
+    this.loadRelatedKeywordsDebounce = _.debounce(
+      this.props.searchActions.loadRelatedKeywords,
+      1000
+    );
   }
 
   render() {
-    const {popularKeywords, historyKeywords, inputText,relatedKeywords} = this.props;
+    const {
+      popularKeywords,
+      historyKeywords,
+      inputText,
+      relatedKeywords
+    } = this.props;
     // console.log('search component', this.props)
 
     return (
@@ -54,31 +62,29 @@ class Search extends Component {
 
   goBack = () => {
     this.props.history.goBack();
-  }
+  };
 
-
-  changeInputText = (text) => {
+  changeInputText = text => {
     this.props.searchActions.setInputText(text);
     // this.props.searchActions.loadRelatedKeywords(text)
-    this.loadRelatedKeywordsDebounce(text)
-  }
+    this.loadRelatedKeywordsDebounce(text);
+  };
 
   clearInputText = () => {
-    this.props.searchActions.clearInputText()
-  }
+    this.props.searchActions.clearInputText();
+  };
 
-  clearHistoryKeywords = ()=>{
-    this.props.searchActions.clearHistoryKeywords()
-  }
+  clearHistoryKeywords = () => {
+    this.props.searchActions.clearHistoryKeywords();
+  };
 
-  searchItem = item =>{
+  searchItem = item => {
     this.props.searchActions.setInputText(item.keyword);
     this.props.searchActions.addHistoryKeywords(item.id);
     this.props.searchActions.loadRelatedShopByKeyword(item.keyword);
 
-    this.props.history.push('/search_result')
-  }
-
+    this.props.history.push("/search_result");
+  };
 }
 
 const mapStateToProps = (state, props) => {
@@ -87,13 +93,16 @@ const mapStateToProps = (state, props) => {
     relatedKeywords: getRelatedKeywords(state),
     inputText: getInputText(state),
     historyKeywords: getHistoryKeywords(state)
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     searchActions: bindActionCreators(searchActions, dispatch)
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);

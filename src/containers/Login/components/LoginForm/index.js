@@ -1,26 +1,29 @@
-import React, { Component } from 'react';
-import './style.css'
+import React, { Component } from "react";
+import "./style.css";
 
 class LoginForm extends Component {
   render() {
-    const {username, password, onChange, onSubmit} = this.props;
+    const { username, password, onChange, onSubmit } = this.props;
     return (
       <div className="loginForm">
         <div className="loginForm__inputContainer">
           <div className="loginForm__row">
             <label className="loginForm__mobileLabel">86</label>
-            <input className="loginForm__input"
-                   name="username" value={username}
-                   onChange={onChange}
+            <input
+              className="loginForm__input"
+              name="username"
+              value={username}
+              onChange={onChange}
             ></input>
           </div>
           <div className="loginForm__row">
             <label className="loginForm__passwordLabel">密码</label>
-            <input className="loginForm__input"
-                   name="password"
-                   type="password"
-                   value={password}
-                   onChange={onChange}
+            <input
+              className="loginForm__input"
+              name="password"
+              type="password"
+              value={password}
+              onChange={onChange}
             ></input>
           </div>
         </div>

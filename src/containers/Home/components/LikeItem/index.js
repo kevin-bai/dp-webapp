@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import './style.css'
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./style.css";
 
 class LikeItem extends Component {
   render() {
@@ -16,7 +16,7 @@ class LikeItem extends Component {
     } = this.props.data;
 
     return (
-      <Link className="likeItem" to={`/detail/${id}`} >
+      <Link className="likeItem" to={`/detail/${id}`}>
         <div className="likeItem__picContainer">
           <div className="likeItem__picTag">{tag}</div>
           <img alt="" className="likeItem__pic" src={picture} />

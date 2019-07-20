@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Slider from "react-slick";
-import './style.css'
+import "./style.css";
 
 const dataSource = [
   {
@@ -26,7 +26,6 @@ const dataSource = [
   }
 ];
 
-
 class Index extends Component {
   render() {
     const settings = {
@@ -37,22 +36,28 @@ class Index extends Component {
     };
 
     return (
-      <div className='headline'>
-        <div className='headline__logo'></div>
-        <div className='headline__slider'>
+      <div className="headline">
+        <div className="headline__logo"></div>
+        <div className="headline__slider">
           <Slider {...settings}>
-            {
-              dataSource.map((item, index) => {
-                return (
-                  <a className='headline__sliderInner' href={item.url} key={index}>
-                    <div className="headline__sliderTitle">{item.title}</div>
-                    <div className="headline__sliderImgWrapper">
-                      <img alt="" className="headline__sliderImg" src={item.pic}/>
-                    </div>
-                  </a>
-                )
-              })
-            }
+            {dataSource.map((item, index) => {
+              return (
+                <a
+                  className="headline__sliderInner"
+                  href={item.url}
+                  key={index}
+                >
+                  <div className="headline__sliderTitle">{item.title}</div>
+                  <div className="headline__sliderImgWrapper">
+                    <img
+                      alt=""
+                      className="headline__sliderImg"
+                      src={item.pic}
+                    />
+                  </div>
+                </a>
+              );
+            })}
           </Slider>
         </div>
       </div>

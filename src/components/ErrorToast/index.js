@@ -1,28 +1,25 @@
-import React, { Component } from 'react';
-import "./style.css"
+import React, { Component } from "react";
+import "./style.css";
 
 class ErrorToast extends Component {
   render() {
-    const {msg} = this.props
+    const { msg } = this.props;
     return (
-      <div className='errorToast'>
-        <div className='errorToast__text'>
-          {msg}
-        </div>
+      <div className="errorToast">
+        <div className="errorToast__text">{msg}</div>
       </div>
     );
   }
 
-
   componentDidMount() {
-    this.timer = setTimeout(()=>{
-      this.props.clearError()
-    },3000)
+    this.timer = setTimeout(() => {
+      this.props.clearError();
+    }, 3000);
   }
 
   componentWillUnmount() {
-    if(this.timer){
-      clearTimeout(this.timer)
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
   }
 }

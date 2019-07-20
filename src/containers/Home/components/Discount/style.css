@@ -75,32 +75,30 @@
   position: relative;
 }
 
-.discount__itemCurrentPrice{
+.discount__itemCurrentPrice {
   color: #f63;
   text-decoration: none;
   font-size: 20px;
 }
 
-.discount__itemCurrentPrice{
+.discount__itemCurrentPrice {
   color: #f63;
   text-decoration: none;
   font-size: 20px;
 }
 
 .discount__itemCurrentPrice::before {
-  content: '\A5';
+  content: "\A5";
   font-size: 14px;
 }
 
-.discount__itemOldPrice{
+.discount__itemOldPrice {
   color: #999;
   font-size: 12px;
   margin-left: 2px;
 }
 
 .discount__itemOldPrice::before {
-  content: '\A5';
+  content: "\A5";
   font-size: 14px;
 }
-
-

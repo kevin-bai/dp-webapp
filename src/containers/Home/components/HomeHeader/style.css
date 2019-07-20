@@ -1,7 +1,7 @@
-.homeHeader::after{
+.homeHeader::after {
   display: block;
   height: 50px;
-  content: '';
+  content: "";
 }
 
 .homeHeader__wrapper {
@@ -46,7 +46,7 @@
 }
 
 .homeHeader__search {
-  display:block;
+  display: block;
   background-color: #fff;
   padding: 0 0 0 30px;
   -webkit-box-flex: 1;
