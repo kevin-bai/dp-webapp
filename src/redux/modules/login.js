@@ -1,4 +1,4 @@
-import { post } from "../../utils/request";
+// import { post } from "../../utils/request";
 
 const types = {
   SET_USER_NAME: "LOGIN/SET_USER_NAME",

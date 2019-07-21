@@ -1,8 +1,9 @@
 import url from "../../utils/url";
+import { FETCH_DATA } from "../middlewares/api";
 import { combineReducers } from "redux/es/redux";
 import { getKeywordById, schema as keywordsSchema } from "./entities/keywords";
 import { schema as shopSchema, getShopById } from "./entities/shops";
-import { FETCH_DATA } from "../middlewares/api";
+
 
 const types = {
   // 获取热门关键词
