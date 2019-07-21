@@ -18,7 +18,11 @@ const initialState = {
     availableIds: [], // 可使用订单id
     refundIds: [] // 退款订单id
   },
-  currentTab: 0
+  currentTab: 0,
+  currentOrder: {
+    id: null,
+    isDeleting: false
+  }
 };
 
 export const types = {
@@ -27,7 +31,14 @@ export const types = {
   FETCH_ORDERS_SUCCESS: "USER/FETCH_ORDERS_SUCCESS",
   FETCH_ORDERS_FAILURE: "USER/FETCH_ORDERS_FAILURE",
   // 设置当前tab
-  SET_CURRENT_TAB: "USER/SET_CURRENT_TAB"
+  SET_CURRENT_TAB: "USER/SET_CURRENT_TAB",
+  //删除订单
+  DELETE_ORDER_REQUEST: "USER/DELETE_ORDER_REQUEST",
+  DELETE_ORDER_SUCCESS: "USER/DELETE_ORDER_SUCCESS",
+  DELETE_ORDER_FAILURE: "USER/DELETE_ORDER_FAILURE",
+  //删除确认对话框
+  SHOW_DELETE_DIALOG: "USER/SHOW_DELETE_DIALOG",
+  HIDE_DELETE_DIALOG: "USER/HIDE_DELETE_DIALOG",
 };
 
 export const actions = {
