@@ -25,12 +25,17 @@ class OrderItem extends Component {
           <div className="orderItem__type">{channel}</div>
           <div>
             {type === 1 ? <div className="orderItem__btn">评价</div> : null}
-            <div className="orderItem__btn">删除</div>
+            <div onClick={this.handleDelete} className="orderItem__btn">删除</div>
           </div>
         </div>
       </div>
     );
   }
+
+  handleDelete = ()=>{
+    this.props.onDelete()
+  }
+
 }
 
 export default OrderItem;
