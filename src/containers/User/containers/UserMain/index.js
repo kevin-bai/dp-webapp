@@ -7,7 +7,8 @@ import { connect } from "react-redux";
 import {
   actions as userActions,
   getCurrentTab,
-  getDeletingOrderId
+  getDeletingOrderId,
+  getCurrentOrder,
 } from "../../../../redux/modules/user"
 
 
@@ -46,11 +47,19 @@ class UserMain extends Component {
   }
 
   renderOrderList = data => {
+    const {currentOrder} =this.props
     return data.map(item => {
       return (
         <OrderItem
           key={item.id}
-          onDelete={this.handleDelete.bind(this, item.id)} data={item}/>
+          data={item}
+          isCommenting={currentOrder.isCommenting && currentOrder.id ===item.id}
+          comment={currentOrder.comment}
+          stars={currentOrder.stars}
+          onCommentChange={this.handleCommentChange}
+          onStarsChange={this.handleStarsChange}
+          onCommenting={this.handleComment.bind(this, item.id)}
+          onDelete={this.handleDelete.bind(this, item.id)}/>
       )
     })
   }
@@ -63,6 +72,14 @@ class UserMain extends Component {
         <div className="userMain__emptyText2">去逛逛看有哪些想买的</div>
       </div>
     )
+  }
+
+  handleStarsChange = star =>{
+    this.props.userActions.setCurrentStar(star)
+  }
+
+  handleCommentChange = value =>{
+    this.props.userActions.setComment(value)
   }
 
   // 删除对话框
@@ -88,12 +105,19 @@ class UserMain extends Component {
   handleDelete = itemId =>{
     this.props.userActions.showDeleteDialog(itemId)
   }
+
+  handleComment = orderId =>{
+    this.props.userActions.commentingOrder(orderId)
+  }
+
+
 }
 
 const mapStateToProps = (state, props) =>{
   return {
     currentTab: getCurrentTab(state),
-    deletingOrderId: getDeletingOrderId(state)
+    deletingOrderId: getDeletingOrderId(state),
+    currentOrder: getCurrentOrder(state)
   }
 }
 

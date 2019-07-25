@@ -22,7 +22,10 @@ const initialState = {
   currentTab: 0,
   currentOrder: {
     id: null,
-    isDeleting: false
+    isDeleting: false,
+    isCommenting:false,
+    comment:'',
+    stars: 0
   }
 };
 
@@ -40,6 +43,11 @@ export const types = {
   //删除确认对话框
   SHOW_DELETE_DIALOG: "USER/SHOW_DELETE_DIALOG",
   HIDE_DELETE_DIALOG: "USER/HIDE_DELETE_DIALOG",
+  SET_CURRENT_ORDER:'USER/SET_CURRENT_ORDER',
+  SHOW_COMMENT_AREA:'USER/SHOW_COMMENT_AREA',
+  HIDE_COMMENT_AREA:'USER/HIDE_COMMENT_AREA',
+  SET_CURRENT_COMMENT: 'USER/SET_CURRENT_COMMENT',
+  SET_CURRENT_STAR:'USER/SET_CURRENT_STAR'
 };
 
 export const actions = {
@@ -86,7 +94,36 @@ export const actions = {
   showDeleteDialog: orderId =>({
     type:types.SHOW_DELETE_DIALOG,
     orderId
+  }),
+  commentingOrder: orderId =>{
+    return (dispatch, getState) =>{
+      dispatch(setCurrentOrder(orderId))
+      dispatch({
+        type:types.SHOW_COMMENT_AREA
+      })
+    }
+  },
+  setComment: text =>({
+    type: types.SET_CURRENT_COMMENT,
+    text
+  }),
+  setCurrentStar: stars =>({
+    type: types.SET_CURRENT_STAR,
+    stars
   })
+}
+;
+
+const setCurrentOrder = orderId =>({
+  type: types.SET_CURRENT_ORDER,
+  orderId
+})
+
+
+const removeOrderId = (state, key, orderId) => {
+  return state[key].filter(id => {
+    return id !== orderId;
+  });
 };
 
 const fetchOrders = url => ({
@@ -100,6 +137,8 @@ const fetchOrders = url => ({
     url
   }
 });
+
+
 
 //reducer
 
@@ -140,12 +179,6 @@ const orders = (state = initialState.orders, action) => {
   }
 };
 
-const removeOrderId = (state, key, orderId) => {
-  return state[key].filter(id => {
-    return id !== orderId;
-  });
-};
-
 const currentTab = (state = initialState.currentTab, action) => {
   switch (action.type) {
     case types.SET_CURRENT_TAB:
@@ -168,6 +201,16 @@ const currentOrder =(state = initialState.currentOrder, action) =>{
     case types.DELETE_ORDER_SUCCESS:
     case types.DELETE_ORDER_FAILURE:
       return initialState.currentOrder
+    case types.SET_CURRENT_ORDER:
+      const comment = action.orderId === state.id ? state.comment: ''
+      const stars = action.orderId === state.id ? state.stars: 0
+      return {...state, id: action.orderId ,comment,stars}
+    case types.SHOW_COMMENT_AREA:
+      return {...state, isCommenting: true}
+    case types.SET_CURRENT_COMMENT:
+      return {...state, comment: action.text}
+    case types.SET_CURRENT_STAR:
+      return {...state, stars: action.stars}
     default:
       return state
   }
@@ -196,5 +239,17 @@ export const getOrders = state => {
 };
 
 export const getDeletingOrderId = state =>{
-  return state.user.currentOrder.id
+  return state.user.currentOrder.isDeleting ? state.user.currentOrder.id : null
+}
+
+export const getCurrentOrderStar = state =>{
+  return state.user.currentOrder.stars
+}
+
+export const getCurrentOrderComment = state =>{
+  return state.user.currentOrder.comment
+}
+
+export const getCurrentOrder = state =>{
+  return state.user.currentOrder
 }
